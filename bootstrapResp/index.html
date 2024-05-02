@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      p {
+        font-weight: bold;
+        font-family: "Schibsted Grotesk", sans-serif;
+      }
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;700&display=swap");
+    </style>
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/countryjs/dist/country.min.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var countries = CountryJS.all();
+        var select = document.querySelector("select");
+
+        countries.forEach(function (country) {
+          var option = document.createElement("option");
+          option.value = country.alpha2Code;
+          option.text = country.name;
+          select.appendChild(option);
+        });
+      });
+    </script>
+  </body>
+</html>

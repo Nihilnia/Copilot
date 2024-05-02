@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* Define the styles for dark mode */
+      .dark-mode {
+        background-color: #0c0c0d;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <h4 id="hoverCount"></h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo
+      euismod, aliquam nunc vitae, ultrices nisl. Nullam euismod, nunc auctor
+      tincidunt aliquet, mauris nunc tincidunt nunc, id lacinia nunc nunc at
+      nunc. Sed auctor, nunc auctor tincidunt aliquet, mauris nunc tincidunt
+      nunc, id lacinia nunc nunc at nunc.
+    </p>
+
+    <button id="darkModeButton">Toggle Dark Mode</button>
+            <script>
+                // Split the text content of the first <p> element into an array of words
+                const words = document.querySelector("p").innerText.split(" ");
+
+                // Wrap each word in a <span> element and store them in an array
+                const spannedWords = words.map((word) => `<span>${word}</span>`);
+
+                // Replace the text content of the first <p> element with the spanned words
+                document.querySelector("p").innerHTML = spannedWords.join(" ");
+
+                // Get all the <span> elements
+                const spans = document.querySelectorAll("span");
+
+                // Add event listeners to each <span> element
+                spans.forEach((span) => {
+                    // When the mouse hovers over a <span> element, change its color to red
+                    span.addEventListener("mouseover", () => {
+                        span.style.color = "red";
+                    });
+
+                    // When the mouse moves out of a <span> element, reset its color
+                    span.addEventListener("mouseout", () => {
+                        span.style.color = "";
+                    });
+                });
+
+                // Initialize a variable to keep track of the hover count
+                let hoverCount = 0;
+
+                // Get the element with the ID "hoverCount"
+                const hoverCountElement = document.getElementById("hoverCount");
+
+                // Get all the <span> elements again
+                const spanz = document.querySelectorAll("span");
+
+                // Add event listeners to each <span> element again
+                spanz.forEach((span) => {
+                    // When the mouse hovers over a <span> element, change its color to red
+                    span.addEventListener("mouseover", () => {
+                        span.style.color = "red";
+
+                        // Increment the hover count and update the text content of the hover count element
+                        hoverCount++;
+                        hoverCountElement.textContent = `Hover Count: ${hoverCount}`;
+                    });
+
+                    // When the mouse moves out of a <span> element, reset its color
+                    span.addEventListener("mouseout", () => {
+                        span.style.color = "";
+                    });
+                });
+
+                // Get the dark mode button element
+                const darkModeButton = document.getElementById("darkModeButton");
+
+                // Add event listener to the dark mode button
+                darkModeButton.addEventListener("click", () => {
+                    // Toggle the dark mode class on the body element
+                    document.body.classList.toggle("dark-mode");
+                });
+            </script>
+        </body>
+    </html>
+  </body>
+</html>
