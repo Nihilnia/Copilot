@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>International Telephone Input</title>
+    <link
+      rel="stylesheet"
+      href="node_modules/intl-tel-input/build/css/intlTelInput.css"
+    />
+  </head>
+  <body>
+    <input type="tel" id="phone" name="phone" />
+
+    <script src="node_modules/intl-tel-input/build/js/intlTelInput.js"></script>
+    <script src="node_modules/intl-tel-input/build/js/utils.js"></script>
+    <script>
+      var input = document.querySelector("#phone");
+      var iti = window.intlTelInput(input, {
+        utilsScript: "node_modules/intl-tel-input/build/js/utils.js",
+      });
+
+      // Get the user's country based on their IP address
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://ipinfo.io/json", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var countryCode = response.country;
+          iti.setCountry(countryCode);
+        }
+      };
+      xhr.send();
+
+      input.addEventListener("countrychange", function () {
+        var countryData = iti.getSelectedCountryData();
+        console.log(countryData.name);
+      });
+    </script>
+  </body>
+</html>
